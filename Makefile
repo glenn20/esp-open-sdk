@@ -134,6 +134,7 @@ $(TOOLCHAIN)/bin/xtensa-lx106-elf-gcc: crosstool-NG/ct-ng
 	cp -f 1000-mforce-l32.patch crosstool-NG/local-patches/gcc/4.8.5/
 	mkdir -p crosstool-NG/local-patches/gdb/7.10/
 	cp -f 1000-gdb-python-3-7.patch crosstool-NG/local-patches/gdb/7.10/
+	cp -f 1001-gdb-guile.patch crosstool-NG/local-patches/gdb/7.10/
 	$(MAKE) -C crosstool-NG -f ../Makefile _toolchain
 
 _toolchain:
