@@ -5,3 +5,4 @@
 /ESP8266_NONOS_SDK*.zip
 /sdk
 /xtensa-lx106-elf/
+/*.o
