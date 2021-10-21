@@ -10,7 +10,7 @@ TOOLCHAIN = $(TOP)/xtensa-lx106-elf
 
 # Vendor SDK version to install, see VENDOR_SDK_ZIP_* vars below
 # for supported versions.
-VENDOR_SDK = 3.0.1
+VENDOR_SDK = 2.1.0-18-g61248df
 
 .PHONY: crosstool-NG toolchain libhal libcirom sdk
 
@@ -153,6 +153,7 @@ crosstool-NG/ct-ng: crosstool-NG/bootstrap
 	$(MAKE) -C crosstool-NG -f ../Makefile _ct-ng
 
 _ct-ng:
+	-$(PATCH) -p1 < ../crosstool-NG.patch
 	./bootstrap
 	./configure --prefix=`pwd`
 	$(MAKE) MAKELEVEL=0
@@ -380,7 +381,7 @@ sdk_patch: $(VENDOR_SDK_DIR)/.dir .sdk_patch_$(VENDOR_SDK)
 	$(UNZIP) $<
 	@touch $@
 
-.sdk_patch_0.9.2: FRM_ERR_PATCH.rar esp_iot_sdk_v0.9.2/.dir 
+.sdk_patch_0.9.2: FRM_ERR_PATCH.rar esp_iot_sdk_v0.9.2/.dir
 	unrar x -o+ $<
 	cp FRM_ERR_PATCH/*.a $(VENDOR_SDK_DIR)/lib/
 	@touch $@
